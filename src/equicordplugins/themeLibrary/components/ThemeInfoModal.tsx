@@ -63,7 +63,8 @@ export const ThemeInfoModal: React.FC<ThemeInfoModalProps> = ({ author, theme, .
                     onClick: async () => {
                         const themesDir = await VencordNative.themes.getThemesDir();
                         const exists = await Native.themeExists(themesDir, theme);
-                        const validThemesDir = await Native.getThemesDir(themesDir, theme);
+                        const validThemesDir = await Native.getThemesDir(theme);
+                        if (!validThemesDir) {
                         if (exists) {
                             openModal(modalProps => (
                                 <Modal
